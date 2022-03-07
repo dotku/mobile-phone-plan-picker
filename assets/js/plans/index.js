@@ -36,6 +36,25 @@ const att = {
   perks: [{}],
 };
 
+const sprint = {
+  label: "Sprint",
+  getUnlimitedPlanPrice: (numUsers) => {
+    switch (parseInt(numUsers)) {
+      case 4:
+        return 30 * parseInt(numUsers);
+      case 3:
+        return 35 * parseInt(numUsers);
+      case 2:
+        return 45 * parseInt(numUsers);
+      case 1:
+        return 60 * parseInt(numUsers);
+      default:
+        return 27 * parseInt(numUsers);
+    }
+  },
+  perks: [{}],
+};
+
 const tMobile = {
   label: "T-Mobile",
   getUnlimitedSeniorPlanPrice: ({ numUsers, numSeniors }) => {
@@ -166,6 +185,7 @@ const plans = {
   customerCellular,
   googleFi,
   mintMobile,
+  sprint,
   tello,
   tMobile,
   usMobile,
