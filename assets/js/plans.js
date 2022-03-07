@@ -1,3 +1,20 @@
+import { getUSDPrice } from "./utils.js";
+
+export const getBestUnlimitedPrice = (numUsers) => {
+  let min = Number.MAX_SAFE_INTEGER;
+  let carrier = "";
+  Object.values(plans).forEach((item) => {
+    const currentUnlimitedPrice = item.getUnlimitedPlanPrice(numUsers);
+    if (currentUnlimitedPrice < min) {
+      console.log(currentUnlimitedPrice);
+      min = currentUnlimitedPrice;
+      carrier = item.label;
+    }
+  });
+
+  return { min, carrier };
+};
+
 const att = {
   label: "AT&T",
   getUnlimitedPlanPrice: (numUsers) => {
@@ -19,6 +36,14 @@ const att = {
 
 const tMobile = {
   label: "T-Mobile",
+  getUnlimitedSeniorPlanPrice: ({ numUsers, numSeniors }) => {
+    console.log(tello.label);
+    const { min, carrier } = getBestUnlimitedPrice(numUsers - numSeniors);
+    const seniorTotal = numSeniors * 27.5;
+    return `${getUSDPrice(seniorTotal + min)}: ${getUSDPrice(
+      seniorTotal
+    )} + ${getUSDPrice(min)} (${carrier})`;
+  },
   getUnlimitedPlanPrice: (numUsers) => {
     numUsers = parseInt(numUsers);
     switch (parseInt(numUsers)) {
@@ -58,7 +83,7 @@ const customerCellular = {
       case 3:
         return 90;
       default:
-        return 30 * (numUsers - 2) + 25 * (numUsers - 3) || 0;
+        return 90 + 25 * (numUsers - 3) || 0;
     }
   },
   dataUnlimited: true,
