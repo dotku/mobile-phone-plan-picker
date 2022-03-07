@@ -144,14 +144,29 @@ const mintMobile = {
   website: "https://www.mintmobile.com/plans/",
 };
 
+const googleFi = {
+  label: "Google Fi",
+  getUnlimitedPlanPrice: (numUsers) => {
+    switch (numUsers) {
+      case 1:
+        return 60;
+      case 2:
+        return 45 * numUsers;
+      default:
+        return 30 * numUsers;
+    }
+  },
+};
+
 const plans = {
   att,
   customerCellular,
-  tMobile,
-  tello,
-  visible,
+  googleFi,
   mintMobile,
+  tello,
+  tMobile,
   usMobile,
+  visible,
 };
 
 export default plans;
