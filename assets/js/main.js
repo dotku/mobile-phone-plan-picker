@@ -1,4 +1,4 @@
-import plans from "./plans.js";
+import plans from "./plans/index.js";
 import { getUSDPrice } from "./utils.js";
 
 (function main() {
@@ -87,7 +87,7 @@ function getTable() {
       plans[item].label || item
     }</a></td>`;
     row.innerHTML += `<td>${getUSDPrice(getUnlimitedTotalPrice(item))}</td>`;
-    row.innerHTML += `<td>${getUSDPrice(
+    row.innerHTML += `<td class="d-none d-md-table-cell">${getUSDPrice(
       getUnlimitedBreakdownPrice(item)
     )}</td>`;
     row.innerHTML += `<td>${getUSDPrice(
