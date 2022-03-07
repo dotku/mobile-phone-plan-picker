@@ -29,7 +29,7 @@
       </tr>
     </thead>
     <tbody>
-      
+
     </tbody>
   </table>
 </div>
@@ -43,13 +43,13 @@ document.getElementById("number-of-users").onchange = () => {
 };
 
 document.querySelector(".btn.plus").onclick = () => {
-  console.log(inputNumberOfUsers.value);
+  // console.log(inputNumberOfUsers.value);
   inputNumberOfUsers.value = parseInt(inputNumberOfUsers.value) + 1;
   genTable();
 };
 
 document.querySelector(".btn.minus").onclick = () => {
-  console.log(inputNumberOfUsers.value);
+  // console.log(inputNumberOfUsers.value);
   inputNumberOfUsers.value = parseInt(inputNumberOfUsers.value) - 1;
   genTable();
 };
@@ -65,15 +65,15 @@ function genTable() {
           .toLocaleString("en-US", {style:"currency", currency:"USD"})
       : "Unkown";
   };
-  sortedPlans = Object
+  const sortedPlans = Object
     .entries(plans)
-    .sort((a, b) => 
+    .sort((a, b) =>
           a[1].getUnlimitedPlanPrice(numberOfUsers) - b[1].getUnlimitedPlanPrice(numberOfUsers)
     )
     .reduce((r, [k, v]) => ({...r, [k]: v}), {});
-  
+
   Object.keys(sortedPlans).map((item) => {
-    console.log(plans[item]);
+    // console.log(plans[item]);
     const row = document.createElement("tr");
     row.innerHTML = `<td>${plans[item].label || item}</td>`;
     row.innerHTML += `<td>${getUnlimitedPlanPriceByCarrierName(item)}</td>`;
