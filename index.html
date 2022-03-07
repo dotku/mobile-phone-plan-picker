@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <title>Phone Plan Picker</title>
+</head>
+<header>
+  <div class="container">
+    <h1 class="my-3">Phone Plan Picker</h1>
+  </div>
+</header>
+<div class="container">
+  <div class="form-group mb-1">
+    <label>Number of Users</labels>
+      <input class="form-control" placeholder="" type="number" value="5" id="number-of-users"/>
+      <small class="form-text">how many users do you have?</small>
+  </div>
+  <div class="form-group mb-1">
+    <div class="btn btn-outline-dark plus" style="font-family:monospace;"> + </div>
+    <div class="btn btn-outline-dark minus" style="font-family:monospace;"> - </div>
+  </div>
+  <table class="table">
+    <caption>Table of Mobile Plans Sorted by Price<caption>
+    <thead>
+      <tr class="table-head">
+        <th>Carrier</th>
+        <th>Unlimited</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+    </tbody>
+  </table>
+</div>
+    <script>
+      (function main() {
+  genTable();
+})();
+      const att = {
+  label: "AT&T",
+  getUnlimitedPlanPrice: (numUsers) => {
+    console.log("att", numUsers);
+    switch (parseInt(numUsers)) {
+      
+      case 4:
+        return 35 * parseInt(numUsers);
+      case 3:
+        return 45 * parseInt(numUsers);
+      case 2:
+        return 60 * parseInt(numUsers);
+      case 1:
+        return 65 * parseInt(numUsers);
+      default:
+        return 30 * parseInt(numUsers);
+    }
+  }
+};
+
+const tMobile = {
+  label: "T-Mobile",
+  getUnlimitedPlanPrice: (numUsers) => {
+    numUsers = parseInt(numUsers);
+    switch (parseInt(numUsers)) {
+      case 4:
+        return 27 * numUsers;
+      case 3:
+        return 30 * numUsers;
+      case 2:
+        return 45 * numUsers;
+      case 1:
+        return 60 * numUsers;
+      default:
+        return 24 * numUsers;
+    }
+  }
+};
+
+const tello = {
+  label: "Tello Mobile",
+  getUnlimitedPlanPrice: (num) => {
+    return 39 * num;
+  },
+  lowestUnitPrice: 39,
+  dataUnlimite: true,
+  website: "https://tello.com/buy/family_plans"
+};
+
+const customerCellular = {
+  label: "Customer Cellular",
+    getUnlimitedPlanPrice: (numUsers) => {
+      numUsers = parseInt(numUsers);
+      switch (numUsers) {
+        case 1:
+          return 55;
+        case 2:
+          return 75;
+        case 3:
+          return 90;
+        default:
+          return 30 * (numUsers - 2) + 25 * (numUsers - 3) || 0;
+      }
+    },
+    dataUnlimited: true,
+    website: "https://www.consumercellular.com/shopping/choose/plan"
+  };
+
+const visible = {
+  label: "Visible",
+    network: "Verizon",
+    price: 25.0,
+    dataUnlimited: true,
+    getUnlimitedPlanPrice: (num) => 25 * parseInt(num),
+    comment: `
+      For party plan/multiple users plan, 
+      it requires at least one user to be the member first and then
+      create the party plan.`,
+    website: "https://www.visible.com/"
+  };
+
+const usMobile = {
+  label: "US Mobile",
+    dataUnlimited: true,
+    getUnlimitedPlanPrice: (num) => {
+      switch (num) {
+        case 1:
+          return 45;
+        case 2:
+          return 30;
+        default:
+          return 25 * num;
+      }
+    },
+    getPriceByData: (numGb, numUser) => {
+      switch (numGb) {
+        case 0:
+          return [8, 7, 6][numUser - 1];
+        case 1:
+          return numUser * 12;
+        case 5:
+          return numUser * 15;
+        case 12:
+          return numUser * 20;
+        case 18:
+          return numUser * 25;
+        case 30:
+          return numUser * 30;
+        default:
+          return "Unkown: no matching data plan was found";
+      }
+    }
+  };
+
+const mintMobile = {
+  label: "Mint Mobile",
+    getUnlimitedPlanPrice: (numUsers) => numUsers * 30,
+    lowestUnitPrice: 30,
+    dataUnlimted: true,
+    website: "https://www.mintmobile.com/plans/"
+  };
+
+const plans = {
+  att,
+  customerCellular,
+  tMobile,
+  tello,
+  visible,
+  mintMobile,
+  usMobile,
+};
+
+// (function main(){
+//   console.log("main");
+// })();
+
+const inputNumberOfUsers = document.getElementById("number-of-users");
+
+document.getElementById("number-of-users").onchange = () => {
+  genTable();
+};
+
+document.querySelector(".btn.plus").onclick = () => {
+  console.log(inputNumberOfUsers.value);
+  inputNumberOfUsers.value = parseInt(inputNumberOfUsers.value) + 1;
+  genTable();
+};
+
+document.querySelector(".btn.minus").onclick = () => {
+  console.log(inputNumberOfUsers.value);
+  inputNumberOfUsers.value = parseInt(inputNumberOfUsers.value) - 1;
+  genTable();
+};
+
+function genTable() {
+  const tBody = document.querySelector("tbody");
+  tBody.innerHTML = "";
+  const numberOfUsers = document.getElementById("number-of-users").value;
+  const getUnlimitedPlanPriceByCarrierName = (carrier) => {
+    return plans[carrier].getUnlimitedPlanPrice
+      ? plans[carrier]
+          .getUnlimitedPlanPrice(numberOfUsers)
+          .toLocaleString("en-US", {style:"currency", currency:"USD"})
+      : "Unkown";
+  };
+  sortedPlans = Object
+    .entries(plans)
+    .sort((a, b) => 
+          a[1].getUnlimitedPlanPrice(numberOfUsers) - b[1].getUnlimitedPlanPrice(numberOfUsers)
+    )
+    .reduce((r, [k, v]) => ({...r, [k]: v}), {});
+  
+  Object.keys(sortedPlans).map((item) => {
+    console.log(plans[item]);
+    const row = document.createElement("tr");
+    row.innerHTML = `<td>${plans[item].label || item}</td>`;
+    row.innerHTML += `<td>${getUnlimitedPlanPriceByCarrierName(item)}</td>`;
+    tBody.append(row);
+  });
+}
+
+
+    </script>
+    </html>
