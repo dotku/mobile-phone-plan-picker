@@ -17,25 +17,32 @@
 </header>
 <div class="container">
   <div class="row">
-  <div class="form-group mb-1 col-6">
-    <div>
+  <div class="form-group mb-1 col-md-6">
     <label>Number of Total Users</labels>
-    <input class="form-control" placeholder="" type="number" value="5" id="number-of-users"/>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="btn btn-outline-dark plus"  type="button" style="font-family:monospace;"> + </div>
+        </div>
+        <input class="form-control" placeholder="" type="number" value="5" id="number-of-users"/>
+        <div class="input-group-append">
+          <div class="btn btn-outline-dark minus"  type="button" style="font-family:monospace;"> - </div>
+        </div>
+      </div>
+
     <small class="form-text">how many users do you have?</small>
-  </div>
-    <div>
-      <div class="btn btn-outline-dark plus" style="font-family:monospace;"> + </div>
-    <div class="btn btn-outline-dark minus" style="font-family:monospace;"> - </div>
-    </div>
   </div>
   <div class="form-group mb-1 col-6">
     <label>Number of Seniors</labels>
-    <input class="form-control" placeholder="" type="number" value="2" id="number-of-seniors"/>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="btn btn-outline-dark plus-senior"  type="button" style="font-family:monospace;"> + </div>
+        </div>
+        <input class="form-control" placeholder="" type="number" value="2" id="number-of-seniors"/>
+        <div class="input-group-append">
+          <div class="btn btn-outline-dark minus-senior"  type="button" style="font-family:monospace;"> - </div>
+        </div>
+      </div>
     <small class="form-text">how many seniors (55 years old and up) members do you have for discount?</small>
-    <div>
-      <div class="btn btn-outline-dark plus-senior" style="font-family:monospace;"> + </div>
-    <div class="btn btn-outline-dark minus-senior" style="font-family:monospace;"> - </div>
-    </div>
   </div>
 </div>
 

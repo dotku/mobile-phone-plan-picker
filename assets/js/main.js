@@ -3,7 +3,6 @@ import { getUSDPrice } from "./utils.js";
 
 (function main() {
   console.log("main");
-  // console.log("senior plan", plans.tMobile.getUnlimitedSeniorPlanPrice(5, 2));
   getTable();
 })();
 
@@ -15,25 +14,21 @@ document.getElementById("number-of-users").onchange = () => {
 };
 
 document.querySelector(".btn.plus").onclick = () => {
-  // console.log(inputNumberOfUsers.value);
   inputNumberOfUsers.value = parseInt(inputNumberOfUsers.value) + 1;
   getTable();
 };
 
 document.querySelector(".btn.minus").onclick = () => {
-  // console.log(inputNumberOfUsers.value);
   inputNumberOfUsers.value = parseInt(inputNumberOfUsers.value) - 1;
   getTable();
 };
 
 document.querySelector(".btn.plus-senior").onclick = () => {
-  // console.log(inputNumberOfUsers.value);
   inputNumberOfSeniors.value = parseInt(inputNumberOfSeniors.value) + 1;
   getTable();
 };
 
 document.querySelector(".btn.minus-senior").onclick = () => {
-  // console.log(inputNumberOfUsers.value);
   inputNumberOfSeniors.value = parseInt(inputNumberOfSeniors.value) - 1;
   getTable();
 };
