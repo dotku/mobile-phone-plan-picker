@@ -59,6 +59,7 @@ const tMobile = {
         return 24 * numUsers;
     }
   },
+  website: "https://www.t-mobile.com/cell-phone-plans",
 };
 
 const tello = {
@@ -158,6 +159,25 @@ const googleFi = {
   },
 };
 
+const verizon = {
+  label: "Verizon",
+  getUnlimitedPlanPrice: (numUsers) => {
+    switch (numUsers) {
+      case 1:
+        return 70;
+      case 2:
+        return 60;
+      case 3:
+        return 45;
+      case 4:
+        return 35;
+      default:
+        return 30 * numUsers;
+    }
+  },
+  website: "https://www.verizon.com/plans/unlimited/#plans",
+};
+
 const plans = {
   att,
   customerCellular,
@@ -166,6 +186,7 @@ const plans = {
   tello,
   tMobile,
   usMobile,
+  verizon,
   visible,
 };
 
