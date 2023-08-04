@@ -20,3 +20,13 @@
 
 * TMobile: https://www.t-mobile.com/resources/phone-trade-in
 * ATT: https://tradein.att.com/start-trade/find/devices
+
+## Reference
+
+* https://prepaid.t-mobile.com/home
+* https://www.tomsguide.com/best-picks/best-prepaid-phone-plans
+* https://www.bestbuy.com/site/searchpage.jsp?id=pcat17071&st=prepaid+phone+plans+with+sim+card
+* https://thesavvybackpacker.com/best-usa-prepaid-sim-card-data-plan/
+* https://www.pcmag.com/news/best-cheap-phone-plans
+* https://www.androidcentral.com/these-are-cheapest-data-plans-you-can-buy-us
+* https://www.usnews.com/360-reviews/services/cell-phone-plans/best-prepaid-cell-phone-plans
